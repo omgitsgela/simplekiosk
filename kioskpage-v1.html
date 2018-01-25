@@ -1,0 +1,95 @@
+<html>
+<head>
+<style>
+body {
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  line-height: 0;
+  background-color: white;
+  height:99.5%;
+  width:99.5%;
+  min-height: 99.5%;
+  min-width: 99.5%;
+  align-content: center;
+}
+
+#wrapper {
+  margin: auto;
+}
+
+#clock {
+  width:50%;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Arial", Arial, sans-serif;
+}
+
+#clockhm {
+font-size: 5em;
+}
+
+#clocksec {
+  font-size: 2.5em;
+  vertical-align: top;
+}
+
+#calendar {
+  width:50%;
+  text-align: center;
+}
+
+#weather {
+  height:50%;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 0px;
+}
+
+</style>
+
+<script>
+function startTime() {
+    var daysinaweek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var monthsinayear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var month = monthsinayear[today.getMonth()];
+    var dayname = daysinaweek[today.getDay()];
+    var daynumber = today.getDate()
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML = "<span id=\x22clockhm\x22>" + h + ":" + m + "</span><span id=\x22clocksec\x22>" + s + "<\span><br>" + dayname + ", "+ month + " " + daynumber;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+
+</head>
+<body onload="startTime()">
+<div id="wrapper">
+
+<table style="width:100%; height:100%;">
+  <tr>
+    <td id="clock"></th>
+    <td id="calendar"><iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=h8l24cf9dqlikvsf1g5jeo4cbo%40group.calendar.google.com&amp;color=%23182C57&amp;ctz=America%2FNew_York" style="border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe></th>
+  </tr>
+  <tr>
+    <td colspan="2" id="weather">
+<script type='text/javascript' src='https://darksky.net/widget/graph-bar/42.698702,-71.135058/us12/en.js?width=100%&height=100%&title=Full	Forecast&textColor=000000&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Trebuchet	MS&customFont=&units=us&timeColor=000000&tempColor=af0000&currentDetailsOption=true'></script>
+    </td>
+  </tr>
+</table>
+
+
+</div>
+</body>
+</html>
